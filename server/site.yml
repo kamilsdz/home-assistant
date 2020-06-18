@@ -1,0 +1,17 @@
+- name: apply common configuration to all nodes
+  hosts: all
+  remote_user: root
+  roles:
+    - common
+
+- name: setup mosquitto MQTT broker
+  hosts: mqtt
+  remote_user: root
+  roles:
+    - mqtt
+
+- name: setup HomeAssistant webserver
+  hosts: web
+  remote_user: root
+  roles:
+    - web

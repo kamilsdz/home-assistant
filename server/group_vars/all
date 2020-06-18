@@ -1,0 +1,3 @@
+mosquitto_username: root
+mosquitto_password: buenosdias
+timezone: Europe/Warsaw

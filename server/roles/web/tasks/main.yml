@@ -1,0 +1,19 @@
+---
+# This playbook will install and configure webserver with Home Assistant
+# https://www.home-assistant.io/docs/installation/docker/
+
+- name: Copy Home Assistant config
+  copy:
+    src: configuration.yaml
+    dest: /etc/homeassistant/config/configuration.yaml
+    force: no
+
+- name: Copy Home Assistant docker-compose
+  copy:
+    src: docker-compose.yml
+    dest: /etc/homeassistant/docker-compose.yml
+ 
+- name: Run docker container
+  command:
+    chdir: /etc/homeassistant/
+    cmd: docker-compose up -d

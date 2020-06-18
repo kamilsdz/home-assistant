@@ -1,0 +1,14 @@
+- name: stop mosquitto
+  service:
+    name: mosquitto
+    state: stopped
+
+- name: start mosquitto
+  service:
+    name: mosquitto
+    state: started
+
+- name: restart mosquitto
+  service:
+    name: mosquitto
+    state: restarted
