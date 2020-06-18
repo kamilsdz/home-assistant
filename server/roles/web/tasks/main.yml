@@ -3,15 +3,25 @@
 # https://www.home-assistant.io/docs/installation/docker/
 
 - name: Copy Home Assistant config
-  copy:
-    src: configuration.yaml
+  template:
+    src: configuration.yaml.j2
     dest: /etc/homeassistant/config/configuration.yaml
     force: no
 
 - name: Copy Home Assistant docker-compose
-  copy:
-    src: docker-compose.yml
+  template:
+    src: docker-compose.yml.j2
     dest: /etc/homeassistant/docker-compose.yml
+ 
+- name: Copy mosquitto config
+  template:
+    src: mosquitto.conf.j2
+    dest: /etc/homeassistant/mosquitto.conf
+ 
+- name: Copy mosquitto passwd
+  template:
+    src: mosquitto.passwd.j2
+    dest: /etc/homeassistant/mosquitto.passwd
  
 - name: Run docker container
   command:
