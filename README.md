@@ -1,12 +1,16 @@
 # Home Assistant for Raspberry Pi
 
 # Instalation:
-First of all - install ansible:
-* `sudo apt-get update`
-* `sudo apt-get upgrade`
-* `sudo apt install ansible`
+First of all - install Ansible
+* `brew install http://git.io/sshpass.rb`
+* `brew install ansible`
 
-## Server:
+## Deploy Home Assistant server to Pi:
+* Connect your Raspberry Pi to the same network
 * `cd server/`
-* `ansible-playbook -i hosts site.yml`
+* `vim hosts` - provide raspberry's IP, `:w`
+* `vim group_vars/all` - change the settings as needed
+* run deploy: `ansible-playbook -i hosts site.yml`
+
+App should be available at: <raspberry_id>:8123 
 

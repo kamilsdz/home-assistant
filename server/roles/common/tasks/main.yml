@@ -1,4 +1,5 @@
 ---
 # This playbook will configure environment
 
+- include: apt_upgrade.yml
 - include: configure_iptables.yml

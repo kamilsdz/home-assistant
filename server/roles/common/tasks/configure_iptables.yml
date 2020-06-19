@@ -2,10 +2,11 @@
   apt:
     name: iptables
     state: latest
+  become: true
 
-- name: Flush iptables rules
-  iptables:
-    flush: true
+- name: Set update-alternatives
+  command: update-alternatives --set iptables /usr/sbin/iptables-legacy
+  become: true
 
 - name: Allow all loopback traffic
   iptables:
@@ -13,18 +14,21 @@
     chain: INPUT
     in_interface: lo
     jump: ACCEPT
+  become: true
 
 - name: Allow established connections
   iptables:
     chain: INPUT
     ctstate: ESTABLISHED,RELATED
     jump: ACCEPT
+  become: true
 
 - name: Allow port ping traffic
   iptables:
     chain: INPUT
     jump: ACCEPT
     protocol: icmp
+  become: true
 
 - name: Allow port 22/SSH traffic
   iptables:
@@ -32,6 +36,7 @@
     destination_port: 22
     jump: ACCEPT
     protocol: tcp
+  become: true
 
 - name: Allow port 80/HTTP traffic
   iptables:
@@ -39,6 +44,7 @@
     destination_port: 80
     jump: ACCEPT
     protocol: tcp
+  become: true
 
 - name: Allow port 443/HTTPS traffic
   iptables:
@@ -46,8 +52,10 @@
     destination_port: 443
     jump: ACCEPT
     protocol: tcp
+  become: true
 
 - name: Drop any traffic without rule
   iptables:
     chain: INPUT
     jump: DROP
+  become: true

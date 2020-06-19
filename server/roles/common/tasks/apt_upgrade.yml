@@ -1,0 +1,10 @@
+- name: Upgrade all packages
+  apt:
+    upgrade: yes
+    update_cache: yes
+  become: true
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+  become: true

@@ -2,10 +2,23 @@
 # This playbook will install and configure webserver with Home Assistant
 # https://www.home-assistant.io/docs/installation/docker/
 
+- name: Check that the docker-compose exists
+  stat:
+    path: /home/pi/homeassistant/docker-compose.yml
+  register: compose
+
 - name: Down docker container
   command:
     chdir: /home/pi/homeassistant/
     cmd: docker-compose down
+  when: compose.stat.exists
+  become: true
+
+- name: Create Home Assistant directory
+  file:
+    path: /home/pi/homeassistant/config
+    state: directory
+    mode: '0755'
 
 - name: Copy Home Assistant config
   template:
@@ -31,3 +44,7 @@
   command:
     chdir: /home/pi/homeassistant/
     cmd: docker-compose up -d
+  register: container
+  become: true
+
+- debug: msg="{{ container.stdout }}"

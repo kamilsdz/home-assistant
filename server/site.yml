@@ -1,17 +1,17 @@
 - name: apply common configuration to all nodes
-  hosts: all
+  hosts: raspberry
   remote_user: root
   roles:
     - common
 
 - name: setup Docker engine
-  hosts: docker
+  hosts: raspberry
   remote_user: root
   roles:
     - docker
 
 - name: run HomeAssistant app
-  hosts: web
+  hosts: raspberry
   remote_user: root
   roles:
     - web
