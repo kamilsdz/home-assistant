@@ -2,28 +2,32 @@
 # This playbook will install and configure webserver with Home Assistant
 # https://www.home-assistant.io/docs/installation/docker/
 
+- name: Down docker container
+  command:
+    chdir: /home/pi/homeassistant/
+    cmd: docker-compose down
+
 - name: Copy Home Assistant config
   template:
     src: configuration.yaml.j2
-    dest: /etc/homeassistant/config/configuration.yaml
-    force: no
+    dest: /home/pi/homeassistant/config/configuration.yaml
 
 - name: Copy Home Assistant docker-compose
   template:
     src: docker-compose.yml.j2
-    dest: /etc/homeassistant/docker-compose.yml
- 
+    dest: /home/pi/homeassistant/docker-compose.yml
+
 - name: Copy mosquitto config
   template:
     src: mosquitto.conf.j2
-    dest: /etc/homeassistant/mosquitto.conf
- 
+    dest: /home/pi/homeassistant/mosquitto.conf
+
 - name: Copy mosquitto passwd
   template:
     src: mosquitto.passwd.j2
-    dest: /etc/homeassistant/mosquitto.passwd
- 
+    dest: /home/pi/homeassistant/mosquitto.passwd
+
 - name: Run docker container
   command:
-    chdir: /etc/homeassistant/
+    chdir: /home/pi/homeassistant/
     cmd: docker-compose up -d

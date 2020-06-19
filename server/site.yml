@@ -4,7 +4,13 @@
   roles:
     - common
 
-- name: setup HomeAssistant webserver
+- name: setup Docker engine
+  hosts: docker
+  remote_user: root
+  roles:
+    - docker
+
+- name: run HomeAssistant app
   hosts: web
   remote_user: root
   roles:
