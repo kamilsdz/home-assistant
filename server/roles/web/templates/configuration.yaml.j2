@@ -5,3 +5,28 @@ mqtt:
   port: 1883
   username: {{ mosquitto_username }}
   password: {{ mosquitto_password }}
+  discovery: true
+  discovery_prefix: homeassistant
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.mqtt: debug
+
+automation:
+  - alias: "Test MQTT automation"
+    trigger:
+      platform: time_pattern
+      minutes: "/1"
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "homeassistant/automation/test"
+            payload: '{"health": true}'
+
+sensor:
+  - platform: mqtt
+    name: "Temperature from example sensor"
+    state_topic: "home/bedroom/sensor1"
+    unit_of_measurement: '°C'
+    value_template: "{{ value_json.temp }}"

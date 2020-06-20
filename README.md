@@ -17,11 +17,11 @@ App should be available at: <raspberry_IP>
 ### Using mosquitto:
 You can use mosquitto to publish new message:
 
-`mosquitto_pub -h 192.168.0.178 -p 1883 -u root -P buenosdias -t '/test' -m '{"foo":"bar"}'`
+`mosquitto_pub -h 192.168.0.178 -p 1883 -u root -P buenosdias -t "home/bedroom/sensor1" -m '{"temp": 23.20,"humidity": 43.70}'`
 
 You can also subscribe to all topics:
 
-`mosquitto_sub -h 192.168.0.178 -p 1883 -u root -P buenosdias -t '/#' -v`
+`mosquitto_sub -h 192.168.0.178 -p 1883 -u root -P buenosdias -t '#' -v`
 
 ### Logs:
 * Connect to your Raspberry Pi using ssh
