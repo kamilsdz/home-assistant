@@ -11,14 +11,14 @@ services:
     restart: always
     ports:
       - 80:8123
-    network_mode: host
+    depends_on:
+      - mosquitto
 
   mosquitto:
     image: eclipse-mosquitto
     hostname: mosquitto
     ports:
-      - 8883:8883
+      - 1883:1883
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./mosquitto.passwd:/etc/mosquitto/passwd
-    network_mode: host

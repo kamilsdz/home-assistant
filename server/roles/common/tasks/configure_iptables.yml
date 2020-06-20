@@ -38,6 +38,14 @@
     protocol: tcp
   become: true
 
+- name: Allow port 1883/MQTT traffic
+  iptables:
+    chain: INPUT
+    destination_port: 1883
+    jump: ACCEPT
+    protocol: tcp
+  become: true
+
 - name: Allow port 80/HTTP traffic
   iptables:
     chain: INPUT

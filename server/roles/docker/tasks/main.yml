@@ -13,6 +13,12 @@
     - software-properties-common
   become: true
 
+- name: Remove existing containerd.io package
+  apt:
+    name: containerd.io
+    state: absent
+  become: true
+
 - name: Add Docker’s official GPG key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
@@ -25,6 +31,12 @@
     state: present
   become: true
 
+- name: Install containerd.io
+  apt:
+    name: containerd.io=1.2.6-3
+    state: present
+  become: true
+
 - name: Install docker engine
   apt:
     name: "{{ item }}"
@@ -33,7 +45,6 @@
     - docker-ce
     - docker-ce-cli
     - docker-compose
-    - containerd.io=1.2.2-3
   become: true
 
 - name: Start deamon

@@ -1,7 +1,6 @@
 # Home Assistant for Raspberry Pi
 
-# Instalation:
-First of all - install Ansible
+# Instalation (MacOS):
 * `brew install http://git.io/sshpass.rb`
 * `brew install ansible`
 
@@ -9,8 +8,22 @@ First of all - install Ansible
 * Connect your Raspberry Pi to the same network
 * `cd server/`
 * `vim hosts` - provide raspberry's IP, `:w`
-* `vim group_vars/all` - change the settings as needed
 * run deploy: `ansible-playbook -i hosts site.yml`
 
-App should be available at: <raspberry_id>:8123 
+App should be available at: <raspberry_IP>
 
+## Debug:
+
+### Using mosquitto:
+You can use mosquitto to publish new message:
+
+`mosquitto_pub -h 192.168.0.178 -p 1883 -u root -P buenosdias -t '/test' -m '{"foo":"bar"}'`
+
+You can also subscribe to all topics:
+
+`mosquitto_sub -h 192.168.0.178 -p 1883 -u root -P buenosdias -t '/#' -v`
+
+### Logs:
+* Connect to your Raspberry Pi using ssh
+* `cd homeassistant/`
+* `docker-compose logs`
