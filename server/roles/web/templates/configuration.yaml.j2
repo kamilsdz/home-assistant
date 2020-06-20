@@ -22,11 +22,11 @@ automation:
       - service: mqtt.publish
         data:
           topic: "homeassistant/automation/test"
-            payload: '{"health": true}'
+          payload: '{"health": true}'
 
 sensor:
   - platform: mqtt
     name: "Temperature from example sensor"
     state_topic: "home/bedroom/sensor1"
     unit_of_measurement: '°C'
-    value_template: "{{ value_json.temp }}"
+    value_template: "{%raw%}{{ value_json.temp }}{%endraw%}"

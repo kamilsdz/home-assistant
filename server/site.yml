@@ -15,3 +15,9 @@
   remote_user: root
   roles:
     - web
+
+- name: add HomeAssistant to autostart
+  hosts: raspberry
+  remote_user: root
+  roles:
+    - autostart
