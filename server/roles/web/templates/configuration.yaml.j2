@@ -1,18 +1,5 @@
 default_config:
 
-mqtt:
-  broker: mosquitto
-  port: 1883
-  username: {{ mosquitto_username }}
-  password: {{ mosquitto_password }}
-  discovery: true
-  discovery_prefix: homeassistant
-
-logger:
-  default: warning
-  logs:
-    homeassistant.components.mqtt: debug
-
 automation:
   - alias: "Test MQTT automation"
     trigger:
@@ -23,6 +10,28 @@ automation:
         data:
           topic: "homeassistant/automation/test"
           payload: '{"health": true}'
+
+homeassistant:
+  name: Home
+  unit_system: metric
+  latitude: 51.107883
+  longitude: 17.038538
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.mqtt: debug
+
+mqtt:
+  broker: mosquitto
+  port: 1883
+  username: {{ mosquitto_username }}
+  password: {{ mosquitto_password }}
+  discovery: true
+  discovery_prefix: homeassistant
+
+recorder:
+  purge_keep_days: 30
 
 sensor:
   - platform: mqtt
