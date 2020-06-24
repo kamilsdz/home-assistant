@@ -1,0 +1,6 @@
+#define WIFI_SSID "WiFi SSID"
+#define WIFI_PASSWORD "WiFi password"
+#define MQTT_BROKER "MQTT broker IP"
+#define MQTT_TOPIC "MQTT topic"
+#define MQTT_USER "MQTT user"
+#define MQTT_PASSWORD "MQTT password"
