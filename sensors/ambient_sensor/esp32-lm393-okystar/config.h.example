@@ -4,4 +4,4 @@
 #define MQTT_TOPIC "MQTT topic"
 #define MQTT_USER "MQTT user"
 #define MQTT_PASSWORD "MQTT password"
-#define TIME_TO_SLEEP 600
+#define DEEP_SLEEP_TIME 600

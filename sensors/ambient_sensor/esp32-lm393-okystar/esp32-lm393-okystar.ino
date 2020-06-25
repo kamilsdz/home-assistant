@@ -1,9 +1,10 @@
-#include "common_setup.h"
+#include "config.h"
+#include <CommonSetup.h>
 
 int sensorPin = 36;
 float max_to = 4096;
 float low_from = 5.0;
- 
+
 void setup() {
   Serial.begin(115200);
   mqttClient.setServer(mqtt_broker, 1883);
@@ -11,7 +12,7 @@ void setup() {
   connect_to_wifi();
   connect_to_mqtt_broker();
 }
- 
+
 void loop() {
   Serial.println("Starting measurements..");
   digitalWrite(LED,HIGH);
@@ -33,12 +34,12 @@ void loop() {
   root.printTo(jsonChar);
   mqttClient.publish(mqtt_topic, jsonChar);
   mqttClient.disconnect();
-    
+
   digitalWrite(LED,LOW);
 
   go_sleep();
 }
- 
+
 float convert_to_lux(int input) {
   float value = input * low_from / max_to;
   return pow(10, value);

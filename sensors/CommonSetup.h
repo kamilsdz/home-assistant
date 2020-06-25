@@ -1,7 +1,6 @@
 #include <ArduinoJson.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
-#include "config.h"
 
 char* ssid = (char*)WIFI_SSID;
 const char* password = WIFI_PASSWORD;
@@ -40,7 +39,7 @@ void go_sleep(){
   ++bootCount;
   Serial.println("Boot number: " + String(bootCount));
 
-  esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
+  esp_sleep_enable_timer_wakeup(DEEP_SLEEP_TIME * uS_TO_S_FACTOR);
 
   Serial.println("Turning ESP in deep sleep mode");
   delay(1000);

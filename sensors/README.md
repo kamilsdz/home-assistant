@@ -1,5 +1,8 @@
 # Sensors
 
+First of all - copy CommonSetup library:
+`mkdir -p /Users/your_user_name/Documents/Arduino/libraries/CommonSetup && cp CommonSetup.h "$_"`
+
 ## ESP32 + DHT11
 **(temperature + humidity)**
 
