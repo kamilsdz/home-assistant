@@ -8,11 +8,13 @@ services:
       - ./config:/config
     environment:
       - TZ={{ timezone }}
+      - "NODERED_ADDRESS=http://{{ local_ip }}:1880"
     restart: always
     ports:
       - 80:8123
     depends_on:
       - mosquitto
+      - nodered
 
   mosquitto:
     image: eclipse-mosquitto
@@ -22,3 +24,13 @@ services:
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./mosquitto.passwd:/etc/mosquitto/passwd
+
+  nodered:
+    image: nodered/node-red
+    restart: unless-stopped
+    environment:
+      - TZ={{ timezone }}
+    ports:
+      - 1880:1880
+    volumes:
+      - ./nodered:/data

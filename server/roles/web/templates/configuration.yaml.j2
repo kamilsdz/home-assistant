@@ -30,6 +30,12 @@ mqtt:
   discovery: true
   discovery_prefix: homeassistant
 
+panel_iframe:
+  node_red:
+    title: Node Red
+    icon: mdi:home-automation
+    url: !env_var NODERED_ADDRESS
+
 recorder:
   purge_keep_days: 30
 

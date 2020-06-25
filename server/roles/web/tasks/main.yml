@@ -40,6 +40,16 @@
     src: mosquitto.passwd.j2
     dest: /home/pi/homeassistant/mosquitto.passwd
 
+- name: Create nodered directory
+  file:
+    path: /home/pi/homeassistant/nodered
+    state: directory
+    mode: '0755'
+
+- name: Set owner of nodered directory
+  command: chown -R pi:pi /home/pi/homeassistant/nodered/
+  become: true
+
 - name: Run docker container
   command:
     chdir: /home/pi/homeassistant/
