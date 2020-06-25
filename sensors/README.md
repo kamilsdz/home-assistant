@@ -1,6 +1,7 @@
 # Sensors
 
-First of all - copy CommonSetup library:
+Start from copying **<CommonSetup.h>** header:
+
 `mkdir -p /Users/your_user_name/Documents/Arduino/libraries/CommonSetup && cp CommonSetup.h "$_"`
 
 ## ESP32 + DHT11
