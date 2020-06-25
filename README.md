@@ -27,16 +27,3 @@ You can also subscribe to all topics:
 * Connect to your Raspberry Pi using ssh
 * `cd homeassistant/`
 * `docker-compose logs`
-
-# Sensors
-
-## ESP32 + DHT11
-(temperature + humidity)
-
-It will produce MQTT message each 30 seconds:
-```js
-{
-  "humidity": 20.0,
-  "temp": 30.0
-}
-```
