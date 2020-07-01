@@ -17,7 +17,7 @@
     for:
       minutes: "00:30:00"
   action:
-    service: notify.mobile_app_iphone_kamil
+    service: notify.ALL_DEVICES
     data:
       title: "Smart Home Alerts"
       message: "Night is comming!🦇"
@@ -33,7 +33,7 @@
       conditions:
         - condition: template
           value_template: "{%raw%}{{ (now().timestamp() - as_timestamp(states.sensor.living_room_illuminance.last_updated)) | int //60 > 30 }}{%endraw%}"
-    - service: notify.mobile_app_iphone_kamil
+    - service: notify.ALL_DEVICES
       data:
         title: "Smart Home Alerts - sensor needs attention❗"
         message: "We haven't received any data for the last 30 minutes! 📡"

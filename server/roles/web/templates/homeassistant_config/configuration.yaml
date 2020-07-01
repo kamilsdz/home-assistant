@@ -31,6 +31,13 @@ mqtt:
   discovery: true
   discovery_prefix: homeassistant
 
+notify:
+  - name: ALL_DEVICES
+    platform: group
+    services:
+      - service: mobile_app_iphone_kamil
+      - service: mobile_app_iphone_domi
+
 panel_iframe:
   node_red:
     title: Node Red
