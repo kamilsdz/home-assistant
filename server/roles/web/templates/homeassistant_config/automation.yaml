@@ -13,7 +13,7 @@
     platform: numeric_state
     entity_id:
       - sensor.living_room_illuminance
-    below: 50
+    below: 10
     for:
       minutes: "00:30:00"
   action:
@@ -23,3 +23,19 @@
       message: "Night is comming!🦇"
       data:
         subtitle: "Remember to close the front door🔑!"
+
+- alias: "Send Notification when sensor needs attention"
+  trigger:
+    platform: time_pattern
+    minutes: "/10"
+  action:
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: "{%raw%}{{ (now().timestamp() - as_timestamp(states.sensor.living_room_illuminance.last_updated)) | int //60 > 30 }}{%endraw%}"
+    - service: notify.mobile_app_iphone_kamil
+      data:
+        title: "Smart Home Alerts - sensor needs attention❗"
+        message: "We haven't received any data for the last 30 minutes! 📡"
+        data:
+          subtitle: "Living room conditions is out of battery."
