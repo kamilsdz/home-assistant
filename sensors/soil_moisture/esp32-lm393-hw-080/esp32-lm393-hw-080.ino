@@ -2,8 +2,8 @@
 #include <CommonSetup.h>
 
 int sensorPin = 36;
-float max_to = 4096;
-float low_from = 5.0;
+float dry_value = 4096;
+float wet_value = 0;
 
 void setup() {
   common_setup();
@@ -17,13 +17,12 @@ void loop() {
   Serial.println("Starting measurements..");
 
   int input = analogRead(sensorPin);
-  input = map(input, low_from, max_to, max_to, low_from);
+  input = map(input, dry_value, wet_value, 0, 100);
 
   StaticJsonBuffer<200> jsonBuffer;
   JsonObject& root  = jsonBuffer.createObject();
 
-  root["lux"] = convert_to_lux(input);
-  Serial.println(convert_to_lux(input));
+  root["moisture"] = input;
 
   char jsonChar[100];
   root.printTo(jsonChar);
@@ -31,9 +30,4 @@ void loop() {
   mqttClient.disconnect();
 
   go_sleep();
-}
-
-float convert_to_lux(int input) {
-  float value = input * low_from / max_to;
-  return pow(10, value);
 }
