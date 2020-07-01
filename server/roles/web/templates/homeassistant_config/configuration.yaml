@@ -1,15 +1,6 @@
 default_config:
 
-automation:
-  - alias: "Test MQTT automation"
-    trigger:
-      platform: time_pattern
-      minutes: "/1"
-    action:
-      - service: mqtt.publish
-        data:
-          topic: "homeassistant/automation/test"
-          payload: '{"health": true}'
+automation: !include automation.yaml
 
 homeassistant:
   name: Home
@@ -21,6 +12,16 @@ logger:
   default: warning
   logs:
     homeassistant.components.mqtt: debug
+
+lovelace:
+  mode: storage
+  dashboards:
+    lovelace-yaml:
+      mode: yaml
+      title: Plants
+      icon: mdi:sprout
+      show_in_sidebar: true
+      filename: plants_view.yaml
 
 mqtt:
   broker: mosquitto
@@ -39,9 +40,4 @@ panel_iframe:
 recorder:
   purge_keep_days: 30
 
-sensor:
-  - platform: mqtt
-    name: "Temperature from example sensor"
-    state_topic: "home/bedroom/sensor1"
-    unit_of_measurement: '°C'
-    value_template: "{%raw%}{{ value_json.temp }}{%endraw%}"
+sensor: !include sensor.yaml

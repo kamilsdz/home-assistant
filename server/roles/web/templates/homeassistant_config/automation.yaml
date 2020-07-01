@@ -1,0 +1,25 @@
+- alias: "Test MQTT automation"
+  trigger:
+    platform: time_pattern
+    minutes: "/5"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "homeassistant/health/mqtt"
+        payload: '{"health": true}'
+
+- alias: "Send Notification when night is comming"
+  trigger:
+    platform: numeric_state
+    entity_id:
+      - sensor.living_room_illuminance
+    below: 50
+    for:
+      minutes: "00:30:00"
+  action:
+    service: notify.mobile_app_iphone_kamil
+    data:
+      title: "Smart Home Alerts"
+      message: "Night is comming!🦇"
+      data:
+        subtitle: "Remember to close the front door🔑!"

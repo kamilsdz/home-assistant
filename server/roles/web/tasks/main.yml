@@ -22,22 +22,37 @@
 
 - name: Copy Home Assistant config
   template:
-    src: configuration.yaml.j2
+    src: homeassistant_config/configuration.yaml
     dest: /home/pi/homeassistant/config/configuration.yaml
+
+- name: Copy Home Assistant plants dashboard config
+  template:
+    src: homeassistant_config/plants_view.yaml
+    dest: /home/pi/homeassistant/config/plants_view.yaml
+
+- name: Copy Home Assistant automations config
+  template:
+    src: homeassistant_config/automation.yaml
+    dest: /home/pi/homeassistant/config/automation.yaml
+
+- name: Copy Home Assistant sensors config
+  template:
+    src: homeassistant_config/sensor.yaml
+    dest: /home/pi/homeassistant/config/sensor.yaml
 
 - name: Copy Home Assistant docker-compose
   template:
-    src: docker-compose.yml.j2
+    src: docker-compose.yml
     dest: /home/pi/homeassistant/docker-compose.yml
 
 - name: Copy mosquitto config
   template:
-    src: mosquitto.conf.j2
+    src: mosquitto.conf
     dest: /home/pi/homeassistant/mosquitto.conf
 
 - name: Copy mosquitto passwd
   template:
-    src: mosquitto.passwd.j2
+    src: mosquitto.passwd
     dest: /home/pi/homeassistant/mosquitto.passwd
 
 - name: Create nodered directory

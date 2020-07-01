@@ -1,0 +1,12 @@
+title: Plants
+views:
+  - title: Plants dashboard
+    theme: dark-mode
+    # https://www.home-assistant.io/lovelace/
+    cards:
+      - type: sensor
+        entity: sensor.coffea_arabica
+        name: Coffea Arabica - soil moisture
+        icon: mdi:sprout
+        graph: line
+        unit: "%"
