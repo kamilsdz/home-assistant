@@ -26,7 +26,7 @@ void loop(){
   if (isnan(humidity) || isnan(temp_c)) {
     Serial.println("Unable to read measurements from sensor");
     return;
-  } else {;
+  } else {
     // Use this to compute capacity: https://arduinojson.org/v6/assistant/
     StaticJsonBuffer<200> jsonBuffer;
     JsonObject& root  = jsonBuffer.createObject();
