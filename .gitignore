@@ -1,3 +1,4 @@
 config.h
 .DS_Store
 sensors/mysensors/
+server/group_vars/all

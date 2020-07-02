@@ -2,3 +2,5 @@ mosquitto_username: root
 mosquitto_password: buenosdias
 timezone: Europe/Warsaw
 local_ip: 192.168.0.178
+sonoff_username: example@provider.com
+sunoff_password: password
