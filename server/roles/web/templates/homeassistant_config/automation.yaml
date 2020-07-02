@@ -27,15 +27,18 @@
 - alias: "Send Notification when sensor needs attention"
   trigger:
     platform: time_pattern
-    minutes: "/10"
+    minutes: "/30"
   action:
-    - condition: or
+    - condition: and
       conditions:
+        - condition: time
+          after: "08:00:00"
+          before: "22:00:00"
         - condition: template
           value_template: "{%raw%}{{ (now().timestamp() - as_timestamp(states.sensor.living_room_illuminance.last_updated)) | int //60 > 30 }}{%endraw%}"
     - service: notify.ALL_DEVICES
       data:
-        title: "Smart Home Alerts - sensor needs attention❗"
+        title: "Smart Home Alerts - sensor needs attention"
         message: "We haven't received any data for the last 30 minutes! 📡"
         data:
           subtitle: "Living room conditions is out of battery."

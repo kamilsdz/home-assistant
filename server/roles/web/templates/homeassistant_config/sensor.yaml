@@ -3,21 +3,26 @@
   state_topic: "home/living_room/conditions/general"
   unit_of_measurement: '°C'
   value_template: "{%raw%}{{ value_json.temp }}{%endraw%}"
+  icon: "mdi:home-thermometer"
 
 - platform: mqtt
   name: "Living room humidity"
   state_topic: "home/living_room/conditions/general"
   unit_of_measurement: '%'
   value_template: "{%raw%}{{ value_json.humidity }}{%endraw%}"
+  icon: "mdi:water-percent"
 
 - platform: mqtt
   name: "Living room illuminance"
   state_topic: "home/living_room/conditions/general"
-  unit_of_measurement: '%'
+  unit_of_measurement: 'lx'
   value_template: "{%raw%}{{ value_json.lux }}{%endraw%}"
+  force_update: true
+  icon: "mdi:brightness-4"
 
 - platform: mqtt
   name: "Coffea Arabica - soil moisture"
   state_topic: "home/plants/coffea_arabica"
   unit_of_measurement: '%'
   value_template: "{%raw%}{{ value_json.moisture }}{%endraw%}"
+  icon: "mdi:sprout"
