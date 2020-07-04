@@ -55,6 +55,21 @@
     src: mosquitto.passwd
     dest: /home/pi/homeassistant/mosquitto.passwd
 
+- name: Remove existing custom components directory
+  file:
+    path: /home/pi/homeassistant/config/custom_components/
+    state: absent
+
+- name: Clone sonoff integration
+  git:
+    repo: https://github.com/peterbuga/HASS-sonoff-ewelink.git
+    dest: /home/pi/repos/
+
+- name: Move sunoff integration to custom components
+  copy:
+    src: /home/pi/repos/HASS-sonoff-ewelink/sonoff/
+    dest: /home/pi/homeassistant/config/custom_components/
+
 - name: Create nodered directory
   file:
     path: /home/pi/homeassistant/nodered

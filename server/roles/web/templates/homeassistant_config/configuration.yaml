@@ -48,3 +48,12 @@ recorder:
   purge_keep_days: 30
 
 sensor: !include sensor.yaml
+
+sonoff:
+  username: {{ sonoff_username }}
+  password: {{ sonoff_password }}
+  scan_interval: 60
+  grace_period: 600
+  api_region: eu
+  entity_prefix: True
+  debug: False
