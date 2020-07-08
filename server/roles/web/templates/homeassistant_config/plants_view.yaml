@@ -5,8 +5,14 @@ views:
     # https://www.home-assistant.io/lovelace/
     cards:
       - type: sensor
-        entity: sensor.coffea_arabica
+        entity: sensor.coffea_arabica_soil_moisture
         name: Coffea Arabica - soil moisture
         icon: mdi:sprout
+        graph: line
+        unit: "%"
+      - type: sensor
+        entity: sensor.banana_tree_soil_moisture
+        name: Banana tree - soil moisture
+        icon: mdi:leaf
         graph: line
         unit: "%"

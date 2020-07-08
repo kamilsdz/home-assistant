@@ -26,3 +26,10 @@
   unit_of_measurement: '%'
   value_template: "{%raw%}{{ value_json.moisture }}{%endraw%}"
   icon: "mdi:sprout"
+
+- platform: mqtt
+  name: "Banana tree - soil moisture"
+  state_topic: "home/plants/banana_tree"
+  unit_of_measurement: '%'
+  value_template: "{%raw%}{{ value_json.moisture }}{%endraw%}"
+  icon: "mdi:leaf"

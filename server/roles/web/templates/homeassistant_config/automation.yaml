@@ -27,7 +27,7 @@
 - alias: "Send Notification when sensor needs attention"
   trigger:
     platform: time_pattern
-    minutes: "/30"
+    minutes: "/60"
   action:
     - condition: and
       conditions:
@@ -42,3 +42,23 @@
         message: "We haven't received any data for the last 30 minutes! 📡"
         data:
           subtitle: "Living room conditions is out of battery."
+
+- alias: "Send Notification when plant needs watering"
+  trigger:
+    platform: time_pattern
+    hours: "17"
+  action:
+    - condition: or
+      conditions:
+         - condition: numeric_state
+           entity_id: "sensor.coffea_arabica_soil_moisture"
+           below: 50
+         - condition: numeric_state
+           entity_id: "sensor.banana_tree_soil_moisture"
+           below: 50
+    - service: notify.ALL_DEVICES
+      data:
+        title: "Smart Home Alerts - 🌱 needs attention"
+        message: "Soil moisture dropped below 50%."
+        data:
+          subtitle: "Water the plants! 💧🌴"

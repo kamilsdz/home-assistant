@@ -59,16 +59,18 @@
   file:
     path: /home/pi/homeassistant/config/custom_components/
     state: absent
+  become: true
 
 - name: Clone sonoff integration
   git:
     repo: https://github.com/peterbuga/HASS-sonoff-ewelink.git
-    dest: /home/pi/repos/
+    dest: /home/pi/repos/HASS-sonoff-ewelink/
 
-- name: Move sunoff integration to custom components
+- name: Copy sonoff integration to custom components
   copy:
     src: /home/pi/repos/HASS-sonoff-ewelink/sonoff/
-    dest: /home/pi/homeassistant/config/custom_components/
+    dest: /home/pi/homeassistant/config/custom_components/sonoff/
+    remote_src: true
 
 - name: Create nodered directory
   file:
