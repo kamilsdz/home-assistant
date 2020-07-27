@@ -11,6 +11,7 @@ const char* mqtt_broker = MQTT_BROKER;
 const char* mqtt_topic = MQTT_TOPIC;
 const char* mqtt_user = MQTT_USER;
 const char* mqtt_password = MQTT_PASSWORD;
+const uint64_t us_to_s_factor = 1000000LL;
 
 #define LED 2
 #define uS_TO_S_FACTOR 1000000
@@ -31,7 +32,7 @@ void go_sleep(){
   esp_wifi_stop();
   adc_power_off();
 
-  esp_sleep_enable_timer_wakeup(DEEP_SLEEP_TIME * uS_TO_S_FACTOR);
+  esp_sleep_enable_timer_wakeup(DEEP_SLEEP_TIME * us_to_s_factor);
 
   Serial.flush();
 
